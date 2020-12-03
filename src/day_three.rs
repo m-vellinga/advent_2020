@@ -9,8 +9,8 @@ pub fn run(input: String) {
     }
     let field = field;
 
-    part1(&field);
-    part2(&field);
+    println!("Day 3 Part 1: {}", part1(&field));
+    println!("Day 3 Part 2: {}", part2(&field));
 }
 
 struct Position {
@@ -23,7 +23,7 @@ struct Pattern {
     down: usize,
 }
 
-fn part1(field: &Vec<Vec<char>>) {
+fn part1(field: &Vec<Vec<char>>) -> i32 {
     let row_length = field[0].len();
     let mut tree_count = 0;
     let mut position = Position { x: 0, y: 0 };
@@ -36,10 +36,10 @@ fn part1(field: &Vec<Vec<char>>) {
         position.y += 1;
     }
 
-    println!("Day 3 Part 1: {}", tree_count);
+    return tree_count;
 }
 
-fn part2(field: &Vec<Vec<char>>) {
+fn part2(field: &Vec<Vec<char>>) -> u64 {
     let row_length = field[0].len();
     let mut multiplier = 1;
     let patterns: [Pattern; 5] = [
@@ -51,7 +51,7 @@ fn part2(field: &Vec<Vec<char>>) {
     ];
 
     for pattern in patterns.iter() {
-        let mut tree_count: usize = 0;
+        let mut tree_count: u64 = 0;
         let mut position = Position { x: 0, y: 0 };
 
         while position.y < field.len() {
@@ -64,5 +64,5 @@ fn part2(field: &Vec<Vec<char>>) {
         multiplier *= tree_count;
     }
 
-    println!("Day 3 Part 2: {}", multiplier);
+    return multiplier;
 }

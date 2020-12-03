@@ -7,9 +7,9 @@ mod day_two;
 fn main() {
     day_one::run();
     day_two::run();
-    day_three::run(read_input("input/day_three.txt"));
+    day_three::run(read_input("three"));
 }
 
-fn read_input(file_name: &str) -> String {
-    fs::read_to_string(file_name).expect("Oopsie")
+fn read_input(day: &str) -> String {
+    fs::read_to_string(format!("input/day_{}.txt", day)).expect("Oopsie")
 }

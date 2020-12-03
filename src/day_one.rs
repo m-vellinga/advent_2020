@@ -20,29 +20,6 @@ pub fn run() {
     part_2(report_input);
 }
 
-// fn part_1(mut report_input: [i32; 200]) {
-//     report_input.sort();
-//     let mut found = false;
-//     for x in 0..report_input.len() {
-//         for y in 0..report_input.len() {
-//             let one = report_input[x];
-//             let two = report_input[report_input.len() - 1 - y];
-
-//             if one + two < 2020 {
-//                 break;
-//             }
-//             if one + two == 2020 {
-//                 println!("Multiplication is {}", one * two);
-//                 found = true;
-//                 break;
-//             }
-//         }
-//         if found {
-//             break;
-//         }
-//     }
-// }
-
 fn part_1(report_input: [i32; 200]) {
     for x in 0..report_input.len() {
         let one = report_input[x];
