@@ -6,7 +6,7 @@ mod day_two;
 
 fn main() {
     day_one::run();
-    day_two::run();
+    day_two::run(read_input("two"));
     day_three::run(read_input("three"));
 }
 

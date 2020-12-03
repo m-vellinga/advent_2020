@@ -16,23 +16,22 @@ pub fn run() {
         1642, 1809, 1609, 1517, 1175,
     ];
 
-    part_1(report_input);
-    part_2(report_input);
+    println!("Day 1 Part 1: {}", part_1(report_input));
+    println!("Day 1 Part 2: {}", part_2(report_input));
 }
 
-fn part_1(report_input: [i32; 200]) {
+fn part_1(report_input: [i32; 200]) -> i32 {
     for x in 0..report_input.len() {
         let one = report_input[x];
         let two = 2020 - one;
         if report_input.contains(&two) {
-            println!("Day 1 Part 1: {}", one * two);
-            break;
+            return one * two;
         }
     }
+    panic!("Not found!")
 }
 
-fn part_2(report_input: [i32; 200]) {
-    let mut found = false;
+fn part_2(report_input: [i32; 200]) -> i32 {
     for x in 0..report_input.len() {
         for y in 0..report_input.len() {
             for z in 0..report_input.len() {
@@ -40,17 +39,10 @@ fn part_2(report_input: [i32; 200]) {
                 let two = report_input[y];
                 let three = report_input[z];
                 if one + two + three == 2020 {
-                    println!("Day 1 Part 2: {}", one * two * three);
-                    found = true;
-                    break;
+                    return one * two * three;
                 }
             }
-            if found {
-                break;
-            }
-        }
-        if found {
-            break;
         }
     }
+    panic!("Not found!")
 }
