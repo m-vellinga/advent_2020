@@ -21,11 +21,10 @@ pub fn run() {
 }
 
 fn part_1(report_input: [i32; 200]) -> i32 {
-    for x in 0..report_input.len() {
-        let one = report_input[x];
-        let two = 2020 - one;
-        if report_input.contains(&two) {
-            return one * two;
+    for first_number in report_input.iter() {
+        let second_number = 2020 - first_number;
+        if report_input.contains(&second_number) {
+            return first_number * second_number;
         }
     }
     panic!("Not found!")
