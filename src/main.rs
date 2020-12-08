@@ -1,19 +1,33 @@
+use std::env;
 use std::fs;
+use std::time::Instant;
 
 mod day_five;
 mod day_four;
 mod day_one;
+mod day_seven;
 mod day_six;
 mod day_three;
 mod day_two;
 
 fn main() {
-    day_one::run();
-    day_two::run(read_input("two"));
-    day_three::run(read_input("three"));
-    day_four::run(read_input("four"));
-    day_five::run(read_input("five"));
-    day_six::run(read_input("six"));
+    let args: Vec<String> = env::args().collect();
+
+    let day: usize = args[1].trim().parse().expect("Not a valid number");
+
+    let now = Instant::now();
+
+    match day {
+        1 => day_one::run(),
+        2 => day_two::run(read_input("two")),
+        3 => day_three::run(read_input("three")),
+        4 => day_four::run(read_input("four")),
+        5 => day_five::run(read_input("five")),
+        6 => day_six::run(read_input("six")),
+        7 => day_seven::run(read_input("seven")),
+        _ => println!("Day not completed yet!"),
+    }
+    println!("{:.2?}", now.elapsed())
 }
 
 fn read_input(day: &str) -> String {
