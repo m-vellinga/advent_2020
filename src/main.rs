@@ -2,6 +2,7 @@ use std::env;
 use std::fs;
 use std::time::Instant;
 
+mod day_eight;
 mod day_five;
 mod day_four;
 mod day_one;
@@ -25,6 +26,7 @@ fn main() {
         5 => day_five::run(read_input("five")),
         6 => day_six::run(read_input("six")),
         7 => day_seven::run(read_input("seven")),
+        8 => day_eight::run(read_input("eight")),
         _ => println!("Day not completed yet!"),
     }
     println!("{:.2?}", now.elapsed())

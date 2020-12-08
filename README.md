@@ -15,4 +15,14 @@ fn part_1() -> u64 {
 fn part_2() -> u64 {
     2
 }
+
+#[test]
+fn test_part_1() {
+
+}
+
+#[test]
+fn test_part_2() {
+
+}
 ```
