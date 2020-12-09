@@ -38,9 +38,10 @@ fn part_2(stream: &Vec<i64>, sum_to_find: i64) -> i64 {
     let mut i = 0;
     'outer: loop {
         let mut y = i + 1;
+        let mut sum = stream[i];
         loop {
-            let current_sum = stream[i..y].iter().sum();
-            match sum_to_find.cmp(&current_sum) {
+            sum += stream[y];
+            match sum_to_find.cmp(&sum) {
                 Ordering::Less => {
                     i += 1;
                     continue 'outer;
