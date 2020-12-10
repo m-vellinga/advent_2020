@@ -18,13 +18,13 @@ fn part_1(stream: &Vec<i64>, preamble_count: usize) -> u64 {
     let mut preamble = stream[..preamble_count].to_vec();
     let xmas_stream = stream[preamble_count..].to_vec();
 
-    'outer: for number in xmas_stream {
+    for number in xmas_stream {
         for pre in &preamble {
             let second_number = number - pre;
             if preamble.contains(&second_number) {
                 preamble.push(number);
                 preamble.remove(0);
-                continue 'outer;
+                break;
             }
         }
         if preamble.last().unwrap() != &number {
@@ -36,7 +36,7 @@ fn part_1(stream: &Vec<i64>, preamble_count: usize) -> u64 {
 
 fn part_2(stream: &Vec<i64>, sum_to_find: i64) -> i64 {
     let mut i = 0;
-    'outer: loop {
+    loop {
         let mut y = i + 1;
         let mut sum = stream[i];
         loop {
@@ -44,7 +44,7 @@ fn part_2(stream: &Vec<i64>, sum_to_find: i64) -> i64 {
             match sum_to_find.cmp(&sum) {
                 Ordering::Less => {
                     i += 1;
-                    continue 'outer;
+                    break;
                 }
                 Ordering::Greater => y += 1,
                 Ordering::Equal => {

@@ -1,39 +1,46 @@
+use std::cmp::Ordering;
 use std::env;
 use std::fs;
 use std::time::Instant;
 
-mod day_eight;
-mod day_five;
-mod day_four;
-mod day_nine;
-mod day_one;
-mod day_seven;
-mod day_six;
-mod day_three;
-mod day_two;
+mod day_01;
+mod day_02;
+mod day_03;
+mod day_04;
+mod day_05;
+mod day_06;
+mod day_07;
+mod day_08;
+mod day_09;
 
 fn main() {
     let args: Vec<String> = env::args().collect();
 
     let day: usize = args[1].trim().parse().expect("Not a valid number");
 
-    let now = Instant::now();
+    let day_list = [
+        day_01::run,
+        day_02::run,
+        day_03::run,
+        day_04::run,
+        day_05::run,
+        day_06::run,
+        day_07::run,
+        day_08::run,
+        day_09::run,
+    ];
 
-    match day {
-        1 => day_one::run(),
-        2 => day_two::run(read_input("two")),
-        3 => day_three::run(read_input("three")),
-        4 => day_four::run(read_input("four")),
-        5 => day_five::run(read_input("five")),
-        6 => day_six::run(read_input("six")),
-        7 => day_seven::run(read_input("seven")),
-        8 => day_eight::run(read_input("eight")),
-        9 => day_nine::run(read_input("nine")),
-        _ => println!("Day not completed yet!"),
+    match day.cmp(&day_list.len()) {
+        Ordering::Greater => println!("Day not completed yet!"),
+        _ => {
+            let input = read_input(&day.to_string());
+            let now = Instant::now();
+            day_list[day - 1](input);
+            println!("{:.2?}", now.elapsed())
+        }
     }
-    println!("{:.2?}", now.elapsed())
 }
 
 fn read_input(day: &str) -> String {
-    fs::read_to_string(format!("input/day_{}.txt", day)).expect("Oopsie")
+    fs::read_to_string(format!("input/day_{:0>2}.txt", day)).expect("Oopsie")
 }
